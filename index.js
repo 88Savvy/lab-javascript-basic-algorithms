@@ -80,10 +80,9 @@ console.log(etCount);
 
 // Bonus 2
 
-/* Through trial and error, I realized can't just compare the string to a reversed string; nor can I iterate forward and back to compare the value of
-string index as capital letters may influence the result. So first, I create a cleanString for comparison */
+/* Through trial and error, I realized can't just compare the string to a reversed string as capital and special characters may affect the result */
 
-let phraseToCheck = "step on no pets";
+let phraseToCheck = "Was it a car or a cat I saw?";
 let cleanString = "";
 
 for (let i = 0; i < phraseToCheck.length; i++) {
@@ -97,25 +96,17 @@ for (let i = 0; i < phraseToCheck.length; i++) {
 
 console.log(cleanString);
 
-/*Now, I use 2 for loops to iterate foward and reversed on cleanString and compare the characters.
-It is important to note that, once a comparison is made, the continue keyword is required to start a new iteration.
-Without it, cleanString[i=0] will be compared to every cleanString[j] before starting a new iteration.
-Without the "continue" command, isPalindrome will alway be false.*/
+/*Now, I can create a reversed string for comparison based on cleanString*/
 
-let isPalindrome = true;
+let reversedString = "";
 
-for (let i = 0, j = cleanString.length - 1; i < j; i++, j--) {
-  let startCharacter = cleanString[i];
-  let endCharacter = cleanString[j];
-  if (startCharacter === endCharacter) {
-    continue;
-  } else if (startCharacter !== endCharacter) {
-    isPalindrome = false;
-    break;
-  }
+for (let i = cleanString.length - 1; i >= 0; i--) {
+  reversedString += cleanString[i];
 }
 
-/* Print conditional to check if the logic works */
+/*Finally, if cleanString === reverseString, phraseToCheck isPalindrome (true). I then print the result to check if logic is working */
+
+let isPalindrome = cleanString === reversedString;
 
 if (isPalindrome) {
   console.log(`${phraseToCheck} is a palindrome`);
